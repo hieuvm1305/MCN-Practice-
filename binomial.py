@@ -1,36 +1,28 @@
 import math
-def gt(n):
-    tich=1;
-    for i in range(1,n+1):
-        tich*=i
-    return tich;
-
 def prob(n,p,N):
-    x=gt(N)
-    y=gt(n)
-    z=gt(N-n)
-    p=float((x/(y*z))*(1/(2**n)))
-    return p
+    
+    xs= math.factorial(N) / (math.factorial(n) * math.factorial(N- n))
+    return xs * (p ** n) * ((1 - p) ** (N - n))
+   
 
 def infoMeasure(n,p,N):
-    k=-(math.log2(prob(n,p,N)))
-    return k
+    return -(math.log2(prob(n,p,N)))
+
 def sumProb(n,p,N):
     '''
-    created by VuMinhHieu_18020513
     ham tinh tong xac suat
     '''
     sum=0
-    for i in range(1, N + 1):
+    for i in range(0, N + 1):
         sum+=prob(i,p,N)
     return sum
+   
 
 def approxEntropy(n,p,N):
     '''
     tinh trung binh luong tin
     '''
     avg=0
-    for i in range(1,N+1):
-        avg+=infoMeasure(i,p,N)
-    avg=avg/N
+    for i in range(0, N + 1):
+        avg += prob(i, p, N) * infoMeasure(i, p, N)
     return avg
