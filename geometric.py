@@ -13,7 +13,7 @@ def sumProb(N,p):
     '''
 
     sum=0.;
-    for i in range(1,N+1):
+    for i in range(0,N+1):
         sum += prob(i, p)
     return sum
 
@@ -22,10 +22,9 @@ def approxEntropy(N,p):
     voi n=1, ta co luong tin la 1 = voi luong tin trung binh la 1,p=1/2.
     con cang ve sau gia tri trng binh luong tin chi sap xi
     '''
-    sum1=0.
-    for i in range(1,N+1):
-        sum1+=-(math.log2(prob(i,p)))
-    sum1=sum1/N
-    return sum1
+    avg=0.
+    for i in range(0,N+1):
+        avg+=pro(i,p)*infoMeasure(i,p)
+    return avg
 
 
